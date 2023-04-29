@@ -1,19 +1,11 @@
 package org.example;
 
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.logging.Logger;
-import org.example.strategy.FileLogStrategy;
 import org.example.strategy.LogStrategy;
-import org.example.strategy.StdoutLogStrategy;
 import org.example.templatemethod.BlackTea;
 import org.example.templatemethod.CafeTemplate;
+import org.example.templatemethod.FunctionCafeTemplate;
 import org.example.templatemethod.Latte;
-import org.yaml.snakeyaml.Yaml;
 
 public class Sample {
 
@@ -25,6 +17,16 @@ public class Sample {
         System.out.println("====================================");
         final CafeTemplate tea = new BlackTea();
         tea.prepareRecipe();
+        System.out.println("====================================");
+        final FunctionCafeTemplate redTea = new FunctionCafeTemplate(() -> {
+            System.out.println("Steeping the red tea");
+            return null;
+        }, () -> {
+            System.out.println("Adding lemon");
+            return null;
+        });
+        redTea.prepareRecipe();
+
 
     }
 }
